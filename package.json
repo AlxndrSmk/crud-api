@@ -1,0 +1,19 @@
+{
+  "name": "crud-api",
+  "version": "1.0.0",
+  "description": "simple CRUD API using in-memory database underneath",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlxndrSmk/crud-api.git"
+  },
+  "author": "Alexander Samak",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlxndrSmk/crud-api/issues"
+  },
+  "homepage": "https://github.com/AlxndrSmk/crud-api#readme"
+}
