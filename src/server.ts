@@ -2,7 +2,8 @@ import { createServer, IncomingMessage, ServerResponse } from 'http';
 import { handleGetUsers, handleGetUserById } from './server/handlers/get';
 import sendResponse from './utils/response';
 import handleCreateUser from './server/handlers/post';
-
+import handleUpdateUser from './server/handlers/put';
+import handleDeleteUser from './server/handlers/delete';
 
 const server = createServer((req: IncomingMessage, res: ServerResponse) => {
   try {
@@ -12,6 +13,10 @@ const server = createServer((req: IncomingMessage, res: ServerResponse) => {
       handleGetUserById(req, res);
     } else if (req.method === 'POST' && req.url === '/api/users') {
       handleCreateUser(req, res);
+    } else if (req.method === 'PUT' && req.url?.startsWith('/api/users/')) {
+      handleUpdateUser(req, res);
+    } else if (req.method === 'DELETE' && req.url?.startsWith('/api/users/')) {
+      handleDeleteUser(req, res);
     } else {
       sendResponse(res, 404, { message: 'Not found' });
     }
