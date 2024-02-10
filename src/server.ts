@@ -6,19 +6,28 @@ import handleUpdateUser from './server/handlers/put';
 import handleDeleteUser from './server/handlers/delete';
 
 const server = createServer((req: IncomingMessage, res: ServerResponse) => {
+  const { method, url } = req;
+
   try {
-    if (req.method === 'GET' && req.url === '/api/users') {
-      handleGetUsers(req, res);
-    } else if (req.method === 'GET' && req.url?.startsWith('/api/users/')) {
-      handleGetUserById(req, res);
-    } else if (req.method === 'POST' && req.url === '/api/users') {
-      handleCreateUser(req, res);
-    } else if (req.method === 'PUT' && req.url?.startsWith('/api/users/')) {
-      handleUpdateUser(req, res);
-    } else if (req.method === 'DELETE' && req.url?.startsWith('/api/users/')) {
-      handleDeleteUser(req, res);
-    } else {
-      sendResponse(res, 404, { message: 'Not found' });
+    switch (true) {
+      case method === 'GET' && url === '/api/users':
+        handleGetUsers(req, res);
+        break;
+      case method === 'GET' && url?.startsWith('/api/users/'):
+        handleGetUserById(req, res);
+        break;
+      case method === 'POST' && url === '/api/users':
+        handleCreateUser(req, res);
+        break;
+      case method === 'PUT' && url?.startsWith('/api/users/'):
+        handleUpdateUser(req, res);
+        break;
+      case method === 'DELETE' && url?.startsWith('/api/users/'):
+        handleDeleteUser(req, res);
+        break;
+      default:
+        res.writeHead(404, { 'Content-Type': 'text/plain' });
+        res.end('Not found');
     }
   } catch (error) {
     sendResponse(res, 500, { message: 'Internal server error' });
