@@ -35,14 +35,16 @@ npm run start
 You can use project in developer mode
 
 ```
-npm run dev
+npm run start:dev
 ```
 
 or in production mode
 
 ```
-npm run prod
+npm run start:prod
 ```
+
+Before running the production mode, make sure you have a production build ready by running the `npm run build` or  `npm run build`  command.
 
 
 <b>After launching the application, launch Postman.</b>
