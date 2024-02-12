@@ -109,4 +109,10 @@ To run the tests
 npm run test
 ```
 
+To run the multi mode
+
+```
+npm run start:multi
+```
+
 
